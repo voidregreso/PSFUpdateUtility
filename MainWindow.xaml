@@ -1,0 +1,65 @@
+﻿<metro:MetroWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Behaviors="http://schemas.microsoft.com/xaml/behaviors" 
+        xmlns:puu="clr-namespace:Hacer" 
+        x:Class="PSFUpdateUtility.MainWindow"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        FontFamily="{DynamicResource MahApps.Fonts.Family.Window.Title}"
+        mc:Ignorable="d"
+        GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
+        BorderThickness="1"
+        Title="Windows PSF Converter Utility" Height="516" Width="854" Foreground="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="241*"/>
+            <ColumnDefinition Width="41*"/>
+        </Grid.ColumnDefinitions>
+        <metro:MetroTabControl HorizontalAlignment="Left" Margin="48,35,0,0" VerticalAlignment="Top" Background="#00000000" Height="404" Width="750" Grid.ColumnSpan="2">
+            <TabItem Header="Operations">
+                <Grid Background="#00000000" Margin="0,0,0.4,-25.2">
+                    <TextBlock HorizontalAlignment="Left" Margin="43,26,0,0" TextWrapping="Wrap" Text="Choose a PSF package along with its dependency CAB file: " VerticalAlignment="Top" Height="33" Width="480" FontSize="18">
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="Black" Opacity="1"/>
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                    <TextBox x:Name="archivo_escogar" HorizontalAlignment="Left" Height="62" Margin="38,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="586" RenderTransformOrigin="0.5,0.5">
+                        <TextBox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-0.259"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBox.RenderTransform>
+                    </TextBox>
+                    <Button Content="..." HorizontalAlignment="Left" Margin="651,71,0,0" VerticalAlignment="Top" Width="65" Height="64" FontSize="20" Click="Button_Click"/>
+                    <Slider x:Name="compr_prg" HorizontalAlignment="Left" Margin="94,187,0,0" VerticalAlignment="Top" Width="526" Maximum="21" SmallChange="1" ValueChanged="compr_prg_ValueChanged"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="94,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="273" FontSize="16" Text="CAB Compress Rate:"/>
+                    <TextBlock x:Name="prg_value" HorizontalAlignment="Left" Margin="651,187,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Height="24" Width="23"/>
+                    <Button x:Name="proc" Content="Start Processing" HorizontalAlignment="Left" Margin="311,238,0,0" VerticalAlignment="Top" Width="121" Height="39" Click="proc_Click"/>
+                    <metro:MetroProgressBar x:Name="barra" HorizontalAlignment="Left" Height="39" Margin="198,315,0,0" VerticalAlignment="Top" Width="490" Value="5"/>
+                    <metro:ProgressRing x:Name="spinner" HorizontalAlignment="Left" Margin="70,314,0,0" VerticalAlignment="Top" Height="40" Width="43" IsActive="False">
+                        <Behaviors:Interaction.Behaviors>
+                            <puu:CollapseBehavior />
+                        </Behaviors:Interaction.Behaviors>
+                    </metro:ProgressRing>
+                </Grid>
+            </TabItem>
+            <TabItem Header="About">
+                <Grid Background="#00E5E5E5">
+                    <TextBlock HorizontalAlignment="Left" Margin="58,53,0,0" TextWrapping="Wrap" Text="Author: Adolfo Lorenzo Cristóbal Pérez" VerticalAlignment="Top" Height="39" Width="643" FontSize="30" FontFamily="Consolas" FontWeight="Bold">
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="Black" Opacity="1"/>
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                    <TextBox HorizontalAlignment="Left" Height="223" Margin="73,97,0,0" TextWrapping="Wrap" Text="Since Build 21382, the LCUs pushed by Microsoft are only in PSFX format, so they cannot be installed properly by Dism++. After a period of research, I understood the structure of PSF files and wrote this utility specifically for this purpose. After a long time of modification and testing, this version has been improved and can correctly handle the current LCU patches released by Microsoft that only have CAB + PSF format. Also to make it easier for dism++ to install the overall Windows update package, I implemented the package of unpacked update folder into a single CAB file with the ability to set the compression rate, in RustLang programming language. " VerticalAlignment="Top" Width="603" FontFamily="Consolas" FontSize="16" Background="Black" Foreground="White"/>
+                </Grid>
+            </TabItem>
+        </metro:MetroTabControl>
+    </Grid>
+</metro:MetroWindow>
